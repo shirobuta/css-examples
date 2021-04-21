@@ -1,0 +1,977 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: none;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+h1 {
+  font-size: clamp(24px, 5vw, 72px);
+}
+
+h2 {
+  font-size: clamp(20px, 5vw, 52px);
+  text-transform: capitalize;
+}
+
+h2:first-child {
+  margin-top: 0;
+}
+
+h3 {
+  font-size: clamp(18px, 5vw, 40px);
+}
+
+h4 {
+  font-size: clamp(18px, 5vw, 35px);
+}
+
+.masthead {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url(/images/background.png);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/background.png);
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  color: white;
+  width: 100%;
+  min-height: 75vh;
+}
+
+.wrapper {
+  margin: calc(clamp(2em, 7vw, 120px)) 0;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+}
+
+.container-xxl {
+  content-visibility: auto;
+  width: clamp(240px, 85vw, 1340px);
+  margin: 0 1.75rem;
+}
+
+div[class*="container-"] + div[class*="container-"] {
+  margin-top: calc(clamp(2em, 7vw, 120px));
+}
+
+div[class*="content-columns-"] p:first-child {
+  margin-top: 0;
+}
+
+.content-columns-3 {
+  -webkit-column-count: 1;
+          column-count: 1;
+}
+
+@media (min-width: 768px) {
+  .content-columns-3 {
+    -webkit-column-count: 2;
+            column-count: 2;
+  }
+}
+
+@media (min-width: 992px) {
+  .content-columns-3 {
+    -webkit-column-count: 3;
+            column-count: 3;
+  }
+}
+
+.content-columns-3 p:first-child:first-letter {
+  font-size: 3rem;
+  line-height: 3rem;
+  float: left;
+  margin-right: 0.5rem;
+}
+
+.aspect-ratio {
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -ms-grid-columns: (minmax(240px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  color: white;
+  gap: 1em;
+}
+
+.aspect-ratio > * {
+  display: block;
+  background-color: grey;
+  width: 100%;
+  position: relative;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.aspect-ratio p {
+  margin: 0;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.aspect-ratio .aspect-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-ratio .aspect-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.aspect-ratio .aspect-1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-ratio div[class*="padding"]:after {
+  content: "";
+  display: block;
+}
+
+.aspect-ratio .padding-16-9:after {
+  padding-bottom: 56.25%;
+}
+
+.aspect-ratio .padding-4-3:after {
+  padding-bottom: 75%;
+}
+
+.aspect-ratio .padding-1-1:after {
+  padding-bottom: 100%;
+}
+
+.scroll-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(240px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1em;
+}
+
+.scroll-container div[class*="scroll-"] {
+  height: 40vh;
+  overflow-y: auto;
+}
+
+.scroll-container div[class*="scroll-"]::-webkit-scrollbar-track {
+  background-color: darkgrey;
+}
+
+.scroll-container div[class*="scroll-"]::-webkit-scrollbar {
+  width: 8px;
+  background-color: darkgrey;
+}
+
+.scroll-container div[class*="scroll-"]::-webkit-scrollbar-thumb {
+  background-color: #D62929;
+}
+
+.scroll-container div[class*="scroll-"] .scroll-child {
+  background: lightgrey;
+  height: 40vh;
+  scroll-snap-align: start;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  font-weight: bold;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.scroll-container .scroll-snap {
+  -ms-scroll-snap-type: y mandatory;
+      scroll-snap-type: y mandatory;
+}
+
+.scroll-container .scroll-proximity {
+  -ms-scroll-snap-type: y proximity;
+      scroll-snap-type: y proximity;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*  number of row */
+/*  number of columns */
+/* speed factor */
+@property --c-0-0 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-0-1 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-0-2 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-0-3 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-0-4 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-0-5 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-0-6 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-0-7 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-0-8 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-0-9 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-1-0 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-1-1 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-1-2 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-1-3 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-1-4 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-1-5 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-1-6 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-1-7 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-1-8 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-1-9 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-2-0 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-2-1 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-2-2 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-2-3 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-2-4 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-2-5 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-2-6 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-2-7 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-2-8 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-2-9 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-3-0 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-3-1 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-3-2 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-3-3 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-3-4 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-3-5 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-3-6 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-3-7 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-3-8 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-3-9 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-4-0 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-4-1 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-4-2 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-4-3 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-4-4 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-4-5 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-4-6 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-4-7 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-4-8 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-4-9 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-5-0 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-5-1 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-5-2 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-5-3 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-5-4 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-5-5 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-5-6 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-5-7 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-5-8 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-5-9 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-6-0 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-6-1 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-6-2 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-6-3 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-6-4 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-6-5 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-6-6 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-6-7 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-6-8 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-6-9 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-7-0 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-7-1 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-7-2 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-7-3 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-7-4 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-7-5 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-7-6 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-7-7 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-7-8 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-7-9 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-8-0 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-8-1 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-8-2 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-8-3 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-8-4 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-8-5 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-8-6 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-8-7 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-8-8 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-8-9 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-9-0 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-9-1 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-9-2 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-9-3 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-9-4 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-9-5 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-9-6 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-9-7 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-9-8 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --c-9-9 {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: false;
+}
+
+img.property-sample {
+  max-width: 320px;
+  transition: --c-0-0 0.74229s 0.0384s, --c-0-1 0.49816s 0.77106s, --c-0-2 0.35347s 0.66293s, --c-0-3 0.58618s 0.48789s, --c-0-4 0.11352s 0.48254s, --c-0-5 0.47791s 0.79102s, --c-0-6 0.73756s 0.33704s, --c-0-7 0.39287s 0.28375s, --c-0-8 0.72626s 0.70651s, --c-0-9 0.76365s 0.7759s, --c-1-0 0.03999s 0.00675s, --c-1-1 0.29144s 0.68619s, --c-1-2 0.69068s 0.59063s, --c-1-3 0.47539s 0.65025s, --c-1-4 0.6748s 0.29399s, --c-1-5 0.51263s 0.57252s, --c-1-6 0.55279s 0.57323s, --c-1-7 0.70201s 0.3702s, --c-1-8 0.13103s 0.16527s, --c-1-9 0.36139s 0.77718s, --c-2-0 0.5513s 0.13181s, --c-2-1 0.08798s 0.00238s, --c-2-2 0.3276s 0.23774s, --c-2-3 0.267s 0.20001s, --c-2-4 0.59817s 0.71121s, --c-2-5 0.18858s 0.0696s, --c-2-6 0.38854s 0.77234s, --c-2-7 0.44045s 0.60958s, --c-2-8 0.63838s 0.65904s, --c-2-9 0.30607s 0.49491s, --c-3-0 0.11805s 0.48942s, --c-3-1 0.40884s 0.40458s, --c-3-2 0.715s 0.45886s, --c-3-3 0.09537s 0.47925s, --c-3-4 0.30427s 0.04834s, --c-3-5 0.64394s 0.34267s, --c-3-6 0.62045s 0.60003s, --c-3-7 0.7914s 0.59274s, --c-3-8 0.33507s 0.78064s, --c-3-9 0.32405s 0.00669s, --c-4-0 0.22153s 0.22457s, --c-4-1 0.31938s 0.42791s, --c-4-2 0.28381s 0.60323s, --c-4-3 0.42124s 0.14587s, --c-4-4 0.04956s 0.16421s, --c-4-5 0.35877s 0.38073s, --c-4-6 0.61545s 0.21945s, --c-4-7 0.23049s 0.76177s, --c-4-8 0.44413s 0.18063s, --c-4-9 0.38983s 0.04359s, --c-5-0 0.74723s 0.45062s, --c-5-1 0.03821s 0.59365s, --c-5-2 0.19428s 0.29154s, --c-5-3 0.3695s 0.23441s, --c-5-4 0.55849s 0.7454s, --c-5-5 0.6861s 0.35317s, --c-5-6 0.14428s 0.44088s, --c-5-7 0.42738s 0.4955s, --c-5-8 0.76119s 0.42439s, --c-5-9 0.43399s 0.59727s, --c-6-0 0.13524s 0.76184s, --c-6-1 0.68196s 0.51673s, --c-6-2 0.10325s 0.69749s, --c-6-3 0.15071s 0.02514s, --c-6-4 0.57912s 0.69532s, --c-6-5 0.27184s 0.40445s, --c-6-6 0.24836s 0.01307s, --c-6-7 0.74623s 0.28143s, --c-6-8 0.50355s 0.31406s, --c-6-9 0.51931s 0.43742s, --c-7-0 0.37766s 0.53712s, --c-7-1 0.50015s 0.09085s, --c-7-2 0.47707s 0.58148s, --c-7-3 0.13118s 0.57358s, --c-7-4 0.43767s 0.49555s, --c-7-5 0.76641s 0.58738s, --c-7-6 0.58168s 0.45966s, --c-7-7 0.4517s 0.01374s, --c-7-8 0.48313s 0.66107s, --c-7-9 0.22965s 0.03833s, --c-8-0 0.71215s 0.33593s, --c-8-1 0.3531s 0.2983s, --c-8-2 0.3107s 0.68672s, --c-8-3 0.76739s 0.0995s, --c-8-4 0.48879s 0.19315s, --c-8-5 0.21921s 0.27256s, --c-8-6 0.6602s 0.22373s, --c-8-7 0.51833s 0.61853s, --c-8-8 0.48739s 0.02205s, --c-8-9 0.14333s 0.48704s, --c-9-0 0.19376s 0.1599s, --c-9-1 0.24055s 0.44499s, --c-9-2 0.26516s 0.61086s, --c-9-3 0.6921s 0.71224s, --c-9-4 0.15331s 0.77315s, --c-9-5 0.09226s 0.63335s, --c-9-6 0.61182s 0.0405s, --c-9-7 0.71686s 0.25084s, --c-9-8 0.03371s 0.61732s, --c-9-9 0.16049s 0.50732s;
+  -webkit-mask: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-0)))) calc(0*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-1)))) calc(0*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-2)))) calc(0*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-3)))) calc(0*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-4)))) calc(0*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-5)))) calc(0*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-6)))) calc(0*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-7)))) calc(0*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-8)))) calc(0*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-9)))) calc(0*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-0)))) calc(1*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-1)))) calc(1*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-2)))) calc(1*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-3)))) calc(1*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-4)))) calc(1*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-5)))) calc(1*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-6)))) calc(1*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-7)))) calc(1*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-8)))) calc(1*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-9)))) calc(1*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-0)))) calc(2*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-1)))) calc(2*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-2)))) calc(2*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-3)))) calc(2*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-4)))) calc(2*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-5)))) calc(2*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-6)))) calc(2*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-7)))) calc(2*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-8)))) calc(2*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-9)))) calc(2*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-0)))) calc(3*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-1)))) calc(3*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-2)))) calc(3*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-3)))) calc(3*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-4)))) calc(3*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-5)))) calc(3*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-6)))) calc(3*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-7)))) calc(3*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-8)))) calc(3*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-9)))) calc(3*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-0)))) calc(4*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-1)))) calc(4*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-2)))) calc(4*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-3)))) calc(4*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-4)))) calc(4*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-5)))) calc(4*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-6)))) calc(4*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-7)))) calc(4*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-8)))) calc(4*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-9)))) calc(4*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-0)))) calc(5*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-1)))) calc(5*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-2)))) calc(5*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-3)))) calc(5*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-4)))) calc(5*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-5)))) calc(5*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-6)))) calc(5*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-7)))) calc(5*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-8)))) calc(5*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-9)))) calc(5*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-0)))) calc(6*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-1)))) calc(6*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-2)))) calc(6*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-3)))) calc(6*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-4)))) calc(6*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-5)))) calc(6*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-6)))) calc(6*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-7)))) calc(6*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-8)))) calc(6*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-9)))) calc(6*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-0)))) calc(7*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-1)))) calc(7*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-2)))) calc(7*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-3)))) calc(7*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-4)))) calc(7*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-5)))) calc(7*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-6)))) calc(7*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-7)))) calc(7*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-8)))) calc(7*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-9)))) calc(7*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-0)))) calc(8*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-1)))) calc(8*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-2)))) calc(8*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-3)))) calc(8*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-4)))) calc(8*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-5)))) calc(8*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-6)))) calc(8*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-7)))) calc(8*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-8)))) calc(8*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-9)))) calc(8*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-0)))) calc(9*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-1)))) calc(9*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-2)))) calc(9*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-3)))) calc(9*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-4)))) calc(9*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-5)))) calc(9*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-6)))) calc(9*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-7)))) calc(9*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-8)))) calc(9*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-9)))) calc(9*100%/(10 - 1)) calc(9*100%/(10 - 1));
+  -webkit-mask: linear-gradient(rgba(0, 0, 0, var(--c-0-0)) 0 0) calc(0*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-1)) 0 0) calc(0*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-2)) 0 0) calc(0*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-3)) 0 0) calc(0*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-4)) 0 0) calc(0*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-5)) 0 0) calc(0*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-6)) 0 0) calc(0*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-7)) 0 0) calc(0*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-8)) 0 0) calc(0*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-9)) 0 0) calc(0*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-0)) 0 0) calc(1*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-1)) 0 0) calc(1*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-2)) 0 0) calc(1*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-3)) 0 0) calc(1*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-4)) 0 0) calc(1*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-5)) 0 0) calc(1*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-6)) 0 0) calc(1*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-7)) 0 0) calc(1*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-8)) 0 0) calc(1*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-9)) 0 0) calc(1*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-0)) 0 0) calc(2*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-1)) 0 0) calc(2*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-2)) 0 0) calc(2*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-3)) 0 0) calc(2*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-4)) 0 0) calc(2*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-5)) 0 0) calc(2*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-6)) 0 0) calc(2*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-7)) 0 0) calc(2*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-8)) 0 0) calc(2*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-9)) 0 0) calc(2*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-0)) 0 0) calc(3*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-1)) 0 0) calc(3*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-2)) 0 0) calc(3*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-3)) 0 0) calc(3*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-4)) 0 0) calc(3*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-5)) 0 0) calc(3*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-6)) 0 0) calc(3*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-7)) 0 0) calc(3*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-8)) 0 0) calc(3*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-9)) 0 0) calc(3*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-0)) 0 0) calc(4*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-1)) 0 0) calc(4*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-2)) 0 0) calc(4*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-3)) 0 0) calc(4*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-4)) 0 0) calc(4*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-5)) 0 0) calc(4*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-6)) 0 0) calc(4*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-7)) 0 0) calc(4*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-8)) 0 0) calc(4*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-9)) 0 0) calc(4*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-0)) 0 0) calc(5*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-1)) 0 0) calc(5*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-2)) 0 0) calc(5*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-3)) 0 0) calc(5*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-4)) 0 0) calc(5*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-5)) 0 0) calc(5*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-6)) 0 0) calc(5*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-7)) 0 0) calc(5*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-8)) 0 0) calc(5*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-9)) 0 0) calc(5*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-0)) 0 0) calc(6*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-1)) 0 0) calc(6*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-2)) 0 0) calc(6*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-3)) 0 0) calc(6*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-4)) 0 0) calc(6*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-5)) 0 0) calc(6*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-6)) 0 0) calc(6*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-7)) 0 0) calc(6*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-8)) 0 0) calc(6*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-9)) 0 0) calc(6*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-0)) 0 0) calc(7*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-1)) 0 0) calc(7*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-2)) 0 0) calc(7*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-3)) 0 0) calc(7*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-4)) 0 0) calc(7*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-5)) 0 0) calc(7*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-6)) 0 0) calc(7*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-7)) 0 0) calc(7*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-8)) 0 0) calc(7*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-9)) 0 0) calc(7*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-0)) 0 0) calc(8*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-1)) 0 0) calc(8*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-2)) 0 0) calc(8*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-3)) 0 0) calc(8*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-4)) 0 0) calc(8*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-5)) 0 0) calc(8*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-6)) 0 0) calc(8*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-7)) 0 0) calc(8*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-8)) 0 0) calc(8*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-9)) 0 0) calc(8*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-0)) 0 0) calc(9*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-1)) 0 0) calc(9*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-2)) 0 0) calc(9*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-3)) 0 0) calc(9*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-4)) 0 0) calc(9*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-5)) 0 0) calc(9*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-6)) 0 0) calc(9*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-7)) 0 0) calc(9*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-8)) 0 0) calc(9*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-9)) 0 0) calc(9*100%/(10 - 1)) calc(9*100%/(10 - 1));
+  mask: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-0)))) calc(0*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-1)))) calc(0*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-2)))) calc(0*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-3)))) calc(0*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-4)))) calc(0*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-5)))) calc(0*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-6)))) calc(0*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-7)))) calc(0*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-8)))) calc(0*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-0-9)))) calc(0*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-0)))) calc(1*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-1)))) calc(1*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-2)))) calc(1*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-3)))) calc(1*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-4)))) calc(1*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-5)))) calc(1*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-6)))) calc(1*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-7)))) calc(1*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-8)))) calc(1*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-1-9)))) calc(1*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-0)))) calc(2*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-1)))) calc(2*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-2)))) calc(2*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-3)))) calc(2*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-4)))) calc(2*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-5)))) calc(2*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-6)))) calc(2*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-7)))) calc(2*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-8)))) calc(2*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-2-9)))) calc(2*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-0)))) calc(3*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-1)))) calc(3*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-2)))) calc(3*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-3)))) calc(3*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-4)))) calc(3*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-5)))) calc(3*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-6)))) calc(3*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-7)))) calc(3*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-8)))) calc(3*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-3-9)))) calc(3*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-0)))) calc(4*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-1)))) calc(4*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-2)))) calc(4*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-3)))) calc(4*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-4)))) calc(4*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-5)))) calc(4*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-6)))) calc(4*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-7)))) calc(4*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-8)))) calc(4*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-4-9)))) calc(4*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-0)))) calc(5*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-1)))) calc(5*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-2)))) calc(5*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-3)))) calc(5*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-4)))) calc(5*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-5)))) calc(5*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-6)))) calc(5*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-7)))) calc(5*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-8)))) calc(5*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-5-9)))) calc(5*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-0)))) calc(6*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-1)))) calc(6*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-2)))) calc(6*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-3)))) calc(6*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-4)))) calc(6*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-5)))) calc(6*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-6)))) calc(6*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-7)))) calc(6*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-8)))) calc(6*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-6-9)))) calc(6*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-0)))) calc(7*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-1)))) calc(7*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-2)))) calc(7*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-3)))) calc(7*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-4)))) calc(7*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-5)))) calc(7*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-6)))) calc(7*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-7)))) calc(7*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-8)))) calc(7*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-7-9)))) calc(7*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-0)))) calc(8*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-1)))) calc(8*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-2)))) calc(8*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-3)))) calc(8*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-4)))) calc(8*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-5)))) calc(8*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-6)))) calc(8*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-7)))) calc(8*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-8)))) calc(8*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-8-9)))) calc(8*100%/(10 - 1)) calc(9*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-0)))) calc(9*100%/(10 - 1)) calc(0*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-1)))) calc(9*100%/(10 - 1)) calc(1*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-2)))) calc(9*100%/(10 - 1)) calc(2*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-3)))) calc(9*100%/(10 - 1)) calc(3*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-4)))) calc(9*100%/(10 - 1)) calc(4*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-5)))) calc(9*100%/(10 - 1)) calc(5*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-6)))) calc(9*100%/(10 - 1)) calc(6*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-7)))) calc(9*100%/(10 - 1)) calc(7*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-8)))) calc(9*100%/(10 - 1)) calc(8*100%/(10 - 1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, var(--c-9-9)))) calc(9*100%/(10 - 1)) calc(9*100%/(10 - 1));
+  mask: linear-gradient(rgba(0, 0, 0, var(--c-0-0)) 0 0) calc(0*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-1)) 0 0) calc(0*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-2)) 0 0) calc(0*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-3)) 0 0) calc(0*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-4)) 0 0) calc(0*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-5)) 0 0) calc(0*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-6)) 0 0) calc(0*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-7)) 0 0) calc(0*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-8)) 0 0) calc(0*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-0-9)) 0 0) calc(0*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-0)) 0 0) calc(1*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-1)) 0 0) calc(1*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-2)) 0 0) calc(1*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-3)) 0 0) calc(1*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-4)) 0 0) calc(1*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-5)) 0 0) calc(1*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-6)) 0 0) calc(1*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-7)) 0 0) calc(1*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-8)) 0 0) calc(1*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-1-9)) 0 0) calc(1*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-0)) 0 0) calc(2*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-1)) 0 0) calc(2*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-2)) 0 0) calc(2*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-3)) 0 0) calc(2*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-4)) 0 0) calc(2*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-5)) 0 0) calc(2*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-6)) 0 0) calc(2*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-7)) 0 0) calc(2*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-8)) 0 0) calc(2*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-2-9)) 0 0) calc(2*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-0)) 0 0) calc(3*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-1)) 0 0) calc(3*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-2)) 0 0) calc(3*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-3)) 0 0) calc(3*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-4)) 0 0) calc(3*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-5)) 0 0) calc(3*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-6)) 0 0) calc(3*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-7)) 0 0) calc(3*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-8)) 0 0) calc(3*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-3-9)) 0 0) calc(3*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-0)) 0 0) calc(4*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-1)) 0 0) calc(4*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-2)) 0 0) calc(4*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-3)) 0 0) calc(4*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-4)) 0 0) calc(4*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-5)) 0 0) calc(4*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-6)) 0 0) calc(4*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-7)) 0 0) calc(4*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-8)) 0 0) calc(4*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-4-9)) 0 0) calc(4*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-0)) 0 0) calc(5*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-1)) 0 0) calc(5*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-2)) 0 0) calc(5*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-3)) 0 0) calc(5*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-4)) 0 0) calc(5*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-5)) 0 0) calc(5*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-6)) 0 0) calc(5*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-7)) 0 0) calc(5*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-8)) 0 0) calc(5*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-5-9)) 0 0) calc(5*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-0)) 0 0) calc(6*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-1)) 0 0) calc(6*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-2)) 0 0) calc(6*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-3)) 0 0) calc(6*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-4)) 0 0) calc(6*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-5)) 0 0) calc(6*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-6)) 0 0) calc(6*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-7)) 0 0) calc(6*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-8)) 0 0) calc(6*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-6-9)) 0 0) calc(6*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-0)) 0 0) calc(7*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-1)) 0 0) calc(7*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-2)) 0 0) calc(7*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-3)) 0 0) calc(7*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-4)) 0 0) calc(7*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-5)) 0 0) calc(7*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-6)) 0 0) calc(7*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-7)) 0 0) calc(7*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-8)) 0 0) calc(7*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-7-9)) 0 0) calc(7*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-0)) 0 0) calc(8*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-1)) 0 0) calc(8*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-2)) 0 0) calc(8*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-3)) 0 0) calc(8*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-4)) 0 0) calc(8*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-5)) 0 0) calc(8*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-6)) 0 0) calc(8*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-7)) 0 0) calc(8*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-8)) 0 0) calc(8*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-8-9)) 0 0) calc(8*100%/(10 - 1)) calc(9*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-0)) 0 0) calc(9*100%/(10 - 1)) calc(0*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-1)) 0 0) calc(9*100%/(10 - 1)) calc(1*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-2)) 0 0) calc(9*100%/(10 - 1)) calc(2*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-3)) 0 0) calc(9*100%/(10 - 1)) calc(3*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-4)) 0 0) calc(9*100%/(10 - 1)) calc(4*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-5)) 0 0) calc(9*100%/(10 - 1)) calc(5*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-6)) 0 0) calc(9*100%/(10 - 1)) calc(6*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-7)) 0 0) calc(9*100%/(10 - 1)) calc(7*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-8)) 0 0) calc(9*100%/(10 - 1)) calc(8*100%/(10 - 1)), linear-gradient(rgba(0, 0, 0, var(--c-9-9)) 0 0) calc(9*100%/(10 - 1)) calc(9*100%/(10 - 1));
+  -webkit-mask-size: calc(100%/10) calc(100%/10);
+  -webkit-mask-repeat: no-repeat;
+  mask-size: calc(100%/10) calc(100%/10);
+  mask-repeat: no-repeat;
+}
+
+img:hover {
+  --c-0-0: 0;
+  --c-0-1: 0;
+  --c-0-2: 0;
+  --c-0-3: 0;
+  --c-0-4: 0;
+  --c-0-5: 0;
+  --c-0-6: 0;
+  --c-0-7: 0;
+  --c-0-8: 0;
+  --c-0-9: 0;
+  --c-1-0: 0;
+  --c-1-1: 0;
+  --c-1-2: 0;
+  --c-1-3: 0;
+  --c-1-4: 0;
+  --c-1-5: 0;
+  --c-1-6: 0;
+  --c-1-7: 0;
+  --c-1-8: 0;
+  --c-1-9: 0;
+  --c-2-0: 0;
+  --c-2-1: 0;
+  --c-2-2: 0;
+  --c-2-3: 0;
+  --c-2-4: 0;
+  --c-2-5: 0;
+  --c-2-6: 0;
+  --c-2-7: 0;
+  --c-2-8: 0;
+  --c-2-9: 0;
+  --c-3-0: 0;
+  --c-3-1: 0;
+  --c-3-2: 0;
+  --c-3-3: 0;
+  --c-3-4: 0;
+  --c-3-5: 0;
+  --c-3-6: 0;
+  --c-3-7: 0;
+  --c-3-8: 0;
+  --c-3-9: 0;
+  --c-4-0: 0;
+  --c-4-1: 0;
+  --c-4-2: 0;
+  --c-4-3: 0;
+  --c-4-4: 0;
+  --c-4-5: 0;
+  --c-4-6: 0;
+  --c-4-7: 0;
+  --c-4-8: 0;
+  --c-4-9: 0;
+  --c-5-0: 0;
+  --c-5-1: 0;
+  --c-5-2: 0;
+  --c-5-3: 0;
+  --c-5-4: 0;
+  --c-5-5: 0;
+  --c-5-6: 0;
+  --c-5-7: 0;
+  --c-5-8: 0;
+  --c-5-9: 0;
+  --c-6-0: 0;
+  --c-6-1: 0;
+  --c-6-2: 0;
+  --c-6-3: 0;
+  --c-6-4: 0;
+  --c-6-5: 0;
+  --c-6-6: 0;
+  --c-6-7: 0;
+  --c-6-8: 0;
+  --c-6-9: 0;
+  --c-7-0: 0;
+  --c-7-1: 0;
+  --c-7-2: 0;
+  --c-7-3: 0;
+  --c-7-4: 0;
+  --c-7-5: 0;
+  --c-7-6: 0;
+  --c-7-7: 0;
+  --c-7-8: 0;
+  --c-7-9: 0;
+  --c-8-0: 0;
+  --c-8-1: 0;
+  --c-8-2: 0;
+  --c-8-3: 0;
+  --c-8-4: 0;
+  --c-8-5: 0;
+  --c-8-6: 0;
+  --c-8-7: 0;
+  --c-8-8: 0;
+  --c-8-9: 0;
+  --c-9-0: 0;
+  --c-9-1: 0;
+  --c-9-2: 0;
+  --c-9-3: 0;
+  --c-9-4: 0;
+  --c-9-5: 0;
+  --c-9-6: 0;
+  --c-9-7: 0;
+  --c-9-8: 0;
+  --c-9-9: 0;
+}
+
+.custom-component-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(240px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1em;
+}
+
+profile-card {
+  border: 2px solid grey;
+  padding: 1rem;
+  display: -ms-grid;
+  display: grid;
+  gap: 1em;
+}
+
+profile-card h4 {
+  margin: 0;
+}
+
+profile-card .row-avatar {
+  display: -ms-inline-grid;
+  display: inline-grid;
+  -ms-grid-columns: (minmax(150px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1em;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+profile-card img.avatar {
+  width: 100%;
+  height: auto;
+}
+
+profile-card button.like {
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  -webkit-transition: background-color 0.8s ease;
+  transition: background-color 0.8s ease;
+}
+
+profile-card[liked] button.like {
+  background-color: pink;
+  color: blue;
+}
+/*# sourceMappingURL=style.css.map */

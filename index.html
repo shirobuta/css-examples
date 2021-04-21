@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <title>CSS Examples</title>
+</head>
+
+<body>
+    <div class="masthead">
+        <h1>CSS Examples</h1>
+    </div>
+
+    <div class="wrapper">
+        <div class="container-xxl">
+            <h2>Responsive Text and containers</h2>
+            <p>This entire page's font sizes and containers are controlled by using min(), max() and clamp() css
+                functions.</p>
+            <p>You may view the page in different resolutions to see the results.</p>
+            <p>Please view the stylesheet to understand how to use them.</p>
+        </div>
+
+        <div class="container-xxl">
+            <h2>Columns (not using grid)</h2>
+            <div class="content-columns-3">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore
+                    magna aliqua. Massa enim nec dui nunc mattis enim. Ultrices in iaculis nunc sed augue. Nisi porta
+                    lorem
+                    mollis aliquam ut porttitor leo a diam. Mauris cursus mattis molestie a. Vitae tempus quam
+                    pellentesque nec
+                    nam aliquam. Amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Dui nunc mattis enim
+                    ut
+                    tellus. Suscipit adipiscing bibendum est ultricies integer quis. Id leo in vitae turpis massa sed
+                    elementum
+                    tempus egestas. Dui sapien eget mi proin sed libero. Pellentesque nec nam aliquam sem et. Fermentum
+                    posuere
+                    urna nec tincidunt praesent semper feugiat.</p>
+
+                <p>Malesuada nunc vel risus commodo. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper
+                    dignissim
+                    cras. Lectus vestibulum mattis ullamcorper velit sed ullamcorper. Mauris rhoncus aenean vel elit
+                    scelerisque
+                    mauris pellentesque pulvinar pellentesque. Nec ultrices dui sapien eget mi proin sed libero. Sit
+                    amet
+                    volutpat consequat mauris nunc congue. Sed risus pretium quam vulputate dignissim suspendisse in.
+                    Nunc eget
+                    lorem dolor sed viverra ipsum. Massa sapien faucibus et molestie. In iaculis nunc sed augue lacus
+                    viverra
+                    vitae.</p>
+
+                <p>Libero justo laoreet sit amet cursus sit amet. Et pharetra pharetra massa massa ultricies mi quis.
+                    Pellentesque diam volutpat commodo sed egestas egestas. Tellus at urna condimentum mattis
+                    pellentesque id
+                    nibh tortor. Ultricies mi quis hendrerit dolor magna. In arcu cursus euismod quis viverra nibh cras
+                    pulvinar. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Ut enim blandit volutpat
+                    maecenas volutpat blandit. Orci a scelerisque purus semper. Pretium aenean pharetra magna ac
+                    placerat
+                    vestibulum lectus.</p>
+            </div>
+        </div>
+
+        <div class="container-xxl">
+            <h2>Aspect Ratio</h2>
+            <h3>CSS property <b>aspect-ratio</b></h3>
+            <div class="aspect-ratio">
+                <div class="aspect-16-9">
+                    <p><b>16:9</b></p>
+                </div>
+
+                <div class="aspect-4-3">
+                    <p><b>4:3</b></p>
+                </div>
+
+                <div class="aspect-1-1">
+                    <p><b>1:1</b></p>
+                </div>
+            </div>
+            <p>Reference:
+                <a
+                    href="https://caniuse.com/mdn-css_properties_aspect-ratio">https://caniuse.com/mdn-css_properties_aspect-ratio</a>
+            </p>
+
+            <h3>Old method using :after and padding-bottom or padding-top </h3>
+            <div class="aspect-ratio">
+                <div class="padding-16-9">
+                    <p><b>16:9</b></p>
+                </div>
+
+                <div class="padding-4-3">
+                    <p><b>4:3</b></p>
+                </div>
+
+                <div class="padding-1-1">
+                    <p><b>1:1</b></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-xxl">
+            <h2>Scroll Snap</h2>
+            <p>Below illustrates the container snapping within a view</p>
+            <div class="scroll-container">
+                <div class="scroll-snap">
+                    <div class="scroll-child">
+                        <p>Scroll Child Mandatory 1</p>
+                    </div>
+                    <div class="scroll-child">
+                        <p>Scroll Child Mandatory 2</p>
+                    </div>
+                    <div class="scroll-child">
+                        <p>Scroll Child Mandatory 3</p>
+                    </div>
+                </div>
+
+                <div class="scroll-proximity">
+                    <div class="scroll-child">
+                        <p>Scroll Child Proximity 1</p>
+                    </div>
+                    <div class="scroll-child">
+                        <p>Scroll Child Proximity 2</p>
+                    </div>
+                    <div class="scroll-child">
+                        <p>Scroll Child Proximity 3</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="container-xxl">
+            <h2>@property</h2>
+            <p>This is a new css property that is best explained in this <a href="https://css-tricks.com/exploring-property-and-its-animating-powers/">reference.</a></p>
+            <p>Hover over the image below to view the animation using this new property. Click on the image if you are viewing this on a device.</p>
+            <p><small>*Works only on Chrome.</small></p>
+            <div>
+                <img class="property-sample" src="https://picsum.photos/id/1025/400/400">
+            </div>
+            <p>Animation reference: <a href="https://css-tricks.com/image-fragmentation-effect-with-css-masks-and-custom-properties/">https://css-tricks.com/image-fragmentation-effect-with-css-masks-and-custom-properties/</a></p>
+        </div>
+
+        <div class="container-xxl">
+            <h2>Custom Component</h2>
+            <div class="custom-component-container">
+                 <profile-card name="Penny Porcupine" position="Penny Collector" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa enim nec dui nunc mattis enim. Ultrices in iaculis nunc sed augue. Nisi porta lorem mollis aliquam ut porttitor leo a diam. Mauris cursus mattis molestie a. Vitae tempus quam pellentesque nec nam aliquam. Amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Dui nunc mattis enim ut"></profile-card>
+                 <profile-card name="Penny Porcupine" position="Penny Collector" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa enim nec dui nunc mattis enim. Ultrices in iaculis nunc sed augue. Nisi porta lorem mollis aliquam ut porttitor leo a diam. Mauris cursus mattis molestie a. Vitae tempus quam pellentesque nec nam aliquam. Amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Dui nunc mattis enim ut"></profile-card>
+                 <profile-card name="Penny Porcupine" position="Penny Collector" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa enim nec dui nunc mattis enim. Ultrices in iaculis nunc sed augue. Nisi porta lorem mollis aliquam ut porttitor leo a diam. Mauris cursus mattis molestie a. Vitae tempus quam pellentesque nec nam aliquam. Amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Dui nunc mattis enim ut"></profile-card>
+            </div>
+        </div>
+
+    </div>
+    <script src="scripts/profile-card.js"></script>
+</body>
+
+</html>

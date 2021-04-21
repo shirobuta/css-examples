@@ -1,0 +1,323 @@
+@mixin breakpoint($point) {
+    @if $point==sm {
+        @media (min-width: 576px) {
+            @content;
+        }
+    }
+
+    @else if $point==md {
+        @media (min-width: 768px) {
+            @content;
+        }
+    }
+
+    @else if $point==l {
+        @media (min-width: 992px) {
+            @content;
+        }
+    }
+
+    @else if $point==xl {
+        @media (min-width: 1400px) {
+            @content;
+        }
+    }
+
+    @else if $point==xxl {
+        @media (min-width: 1600px) {
+            @content;
+        }
+    }
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+body,
+html {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(14px, 2vw, 16px);
+}
+
+h1 {
+    font-size: clamp(24px, 5vw, 72px);
+}
+
+h2 {
+    font-size: clamp(20px, 5vw, 52px);
+    text-transform: capitalize;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+h3 {
+    font-size: clamp(18px, 5vw, 40px);
+}
+
+h4 {
+    font-size: clamp(18px, 5vw, 35px);
+}
+
+.masthead {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/background.png);
+    display: grid;
+    place-content: center;
+    color: white;
+    width: 100%;
+    min-height: 75vh;
+}
+
+.wrapper {
+    margin: calc(clamp(2em, 7vw, 120px)) 0;
+    display: grid;
+    justify-items: center;
+}
+
+.container-xxl {
+    content-visibility: auto;
+    width: clamp(240px, 85vw, 1340px);
+    margin: 0 1.75rem;
+}
+
+div[class*="container-"]+div[class*="container-"] {
+    margin-top: calc(clamp(2em, 7vw, 120px));
+}
+
+div[class*="content-columns-"] {
+    p:first-child {
+        margin-top: 0;
+    }
+}
+
+.content-columns-3 {
+    column-count: 1;
+
+    @include breakpoint(md) {
+        column-count: 2;
+    }
+
+    @include breakpoint(l) {
+        column-count: 3;
+    }
+
+    p:first-child:first-letter {
+        font-size: 3rem;
+        line-height: 3rem;
+        float: left;
+        margin-right: 0.5rem;
+    }
+}
+
+
+.aspect-ratio {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    color: white;
+    gap: 1em;
+
+    &>* {
+        display: block;
+        background-color: grey;
+        width: 100%;
+        position: relative;
+        height: fit-content;
+    }
+
+    p {
+        margin: 0;
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .aspect {
+        &-16-9 {
+            aspect-ratio: 16 / 9;
+        }
+
+        &-4-3 {
+            aspect-ratio: 4 / 3;
+        }
+
+        &-1-1 {
+            aspect-ratio: 1 / 1;
+        }
+    }
+
+    div[class*="padding"]:after {
+        content: "";
+        display: block;
+    }
+
+    .padding {
+        &-16-9:after {
+            padding-bottom: 9 / 16 * 100%;
+        }
+
+        &-4-3:after {
+            padding-bottom: 3 / 4 * 100%;
+        }
+
+        &-1-1:after {
+            padding-bottom: 100%;
+        }
+    }
+}
+
+.scroll-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1em;
+
+    div[class*="scroll-"] {
+        height: 40vh;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar-track {
+            background-color: darkgrey;
+        }
+
+        &::-webkit-scrollbar {
+            width: 8px;
+            background-color: darkgrey;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #D62929;
+        }
+
+        .scroll-child {
+            background: lightgrey;
+            height: 40vh;
+            scroll-snap-align: start;
+            display: grid;
+            place-content: center;
+            font-weight: bold;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+    }
+
+    .scroll-snap {
+        scroll-snap-type: y mandatory;
+    }
+
+    .scroll-proximity {
+        scroll-snap-type: y proximity;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+$x:10;
+/*  number of row */
+$y:10;
+/*  number of columns */
+$s:0.8;
+/* speed factor */
+
+@for $i from 0 through ($x - 1) {
+    @for $j from 0 through ($y - 1) {
+        @property --c-#{$i}-#{$j} {
+            syntax: "<number>";
+            initial-value: 1;
+            inherits: false;
+        }
+    }
+}
+
+@function transition($i, $j) {
+    @return ($s*random())+s ($s*random())+s;
+}
+
+@mixin image() {
+    $all_t: ();
+    $all_m: ();
+
+    @for $i from 0 through ($x - 1) {
+        @for $j from 0 through ($y - 1) {
+            $all_t: append($all_t, --c-#{$i}-#{$j} transition($i, $j), comma);
+            $all_m: append($all_m, linear-gradient(rgba(0, 0, 0, var(--c-#{$i}-#{$j})) 0 0) calc(#{$i}*100%/(#{$x} - 1)) calc(#{$j}*100%/(#{$y} - 1)), comma);
+        }
+    }
+
+    transition: $all_t;
+    -webkit-mask: $all_m;
+    mask: $all_m;
+}
+
+img.property-sample {
+    max-width: 320px;
+    @include image();
+    -webkit-mask-size:calc(100%/#{$x}) calc(100%/#{$y});
+    -webkit-mask-repeat: no-repeat;
+    mask-size:calc(100%/#{$x}) calc(100%/#{$y});
+    mask-repeat: no-repeat;
+}
+
+img:hover {
+    @for $i from 0 through ($x - 1) {
+        @for $j from 0 through ($y - 1) {
+            --c-#{$i}-#{$j}: 0;
+        }
+    }
+}
+
+.custom-component-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1em;
+}
+
+profile-card {
+    border: 2px solid grey;
+    padding: 1rem;
+    display: grid;
+    gap: 1em;
+
+    h4{
+        margin:0;
+    }
+
+    .row-avatar{
+        display:inline-grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap:1em;
+        align-items: flex-end;
+    }
+
+    img.avatar {
+        width: 100%;
+        height: auto;
+    }
+
+    button.like{
+        border:none;
+        border-radius: 10px;
+        padding:0.5rem 1rem;
+        font-weight: 700;
+        transition: background-color 0.8s ease;
+    }
+
+    &[liked]{
+        button.like{
+            background-color:pink;
+            color:blue;
+        }
+    }
+}
